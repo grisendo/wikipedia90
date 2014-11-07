@@ -1,0 +1,40 @@
+doctype html
+html lang="en"
+  head
+    meta charset="utf-8"
+    meta http-equiv="X-UA-Compatible" content="IE=edge"
+    meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"
+    meta name="apple-mobile-web-app-capable" content="yes"
+    meta name="apple-mobile-web-app-status-bar-style" content="black"
+    link rel="shortcut icon" type="image/png" href="/images/icon.png"
+    link rel="apple-touch-icon" href="/images/icon.png"
+    - if @titleText
+      title #{@titleText} • Wikipedia
+    - else
+      title Wikipedia
+    link href="/css/bootstrap.min.css" rel="stylesheet"
+    link href="/css/social-likes_flat.css" rel="stylesheet"
+    link href="/css/app.css" rel="stylesheet"
+    link href="http://fonts.googleapis.com/css?family=Merriweather:400,300,700,300italic,700italic,400italic" rel="stylesheet" type="text/css"
+  body class=@class
+    div class="container"
+      header Wikipedia
+      div id="search"
+        form action="/search" method="post"
+          - if @search
+            input name="search" type="text" placeholder="Search" autocomplete="off" autofocus="autofocus"
+          - else
+            input value=@termbox name="search" type="text" placeholder="Search" autocomplete="off" autofocus="autofocus"
+      main
+        == yield
+      div id="social"
+        div class="social-likes" data-url="http://wikipedia.moesalih.com"
+          div class="facebook" title="Share link on Facebook" Facebook
+          div class="twitter" title="Share link on Twitter" Twitter
+          div class="plusone" title="Share link on Google+" Google+
+      div id="whatisthis"
+        a href="/about" What is this?
+    script src="/js/jquery-1.11.0.min.js"
+    script src="/js/bootstrap.min.js"
+    script src="/js/social-likes.min.js"
+    script src="/js/app.js"
